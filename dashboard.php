@@ -10,6 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 $username = $_SESSION['username'];
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,8 +66,23 @@ $username = $_SESSION['username'];
     <div class="mt-5">
         <h3>Welcome to your Expense Dashboard</h3>
         <p>HAHAHAHA ND MAG CONNECT AY GIDEON</p>
-        <a href="index.php" class="btn btn-primary">Go to Expense Tracker</a>
+        <a href="expense_tracker.php" class="btn btn-primary">Go to Expense Tracker</a>
     </div>
+
+    <div class="container mt-5">
+    <h1 class="mb-4">Dashboard</h1>
+
+    <!-- User details -->
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <h4>Welcome, <?= htmlspecialchars($username) ?>!</h4>
+            <p><a href="changepassword.php" class="btn btn-warning btn-sm">Change Password</a></p>
+        </div>
+    </div>
+
+    <!-- Your other dashboard content... -->
+</div>
+
 </div>
 
 </body>
