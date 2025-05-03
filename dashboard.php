@@ -1,13 +1,18 @@
 <?php
 session_start();
-
-// Check if user is logged in
+include_once("connection.php");
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 $username = $_SESSION['username'];
+$user_id = $_SESSION['user_id'];
+
+$result = $conn->query("SELECT profile_picture FROM tbl_users WHERE user_id = $user_id");
+$user = $result->fetch_assoc();
+echo "<img src='uploads/" . $user['profile_picture'] . "' width='100' height='100'><br>";
+
 ?>
 
 
@@ -65,7 +70,6 @@ $username = $_SESSION['username'];
 
     <div class="mt-5">
         <h3>Welcome to your Expense Dashboard</h3>
-        <p>HAHAHAHA ND MAG CONNECT AY GIDEON</p>
         <a href="expense_tracker.php" class="btn btn-primary">Go to Expense Tracker</a>
     </div>
 
@@ -77,10 +81,9 @@ $username = $_SESSION['username'];
         <div class="col-md-8">
             <h4>Welcome, <?= htmlspecialchars($username) ?>!</h4>
             <p><a href="changepassword.php" class="btn btn-warning btn-sm">Change Password</a></p>
-        </div>
+            <p><a href="update_profile.php">Change Profile</a></p>
+        </div>   
     </div>
-
-    <!-- Your other dashboard content... -->
 </div>
 
 </div>

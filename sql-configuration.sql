@@ -41,3 +41,12 @@ CREATE TABLE tbl_budgets(
     amount_limit DECIMAl(5,2) 
 );
 
+
+
+CREATE TABLE AccessLogs (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    action VARCHAR(255),
+    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);

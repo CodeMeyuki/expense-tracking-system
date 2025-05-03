@@ -1,24 +1,23 @@
 <?php
-session_start();
+
 include_once("connection.php");
-
 $error = "";
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
-
+    
     if (!empty($email) && !empty($password)) {
         $result = $conn->query("SELECT user_id, username, password FROM tbl_users WHERE email = '$email'");
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-            if ($password == $row['password']) {
+            if ($password == $row['password']) {                
+
                 $_SESSION["user_id"] = $row['user_id'];
                 $_SESSION["username"] = $row['username'];
-
+                
                 header("Location: dashboard.php");
                 exit();
             } else {
